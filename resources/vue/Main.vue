@@ -42,12 +42,12 @@ export default {
     container.appendChild(this.renderer.domElement)
 
     this.camera = new THREE.PerspectiveCamera(
-      60,
+      50,
       this.windowWidth / this.windowHeight,
       1,
-      10
+      2000
     )
-    this.camera.position.z = 3
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -57,13 +57,10 @@ export default {
   },
   methods: {
     execRender() {
-      // set stereo view
       const effect = new StereoEffect(this.renderer)
       effect.eyeSeparation = 1
       effect.setSize(window.innerWidth, window.innerHeight)
       effect.render(this.scene, this.camera)
-
-      this.renderer.render(this.scene, this.camera)
     },
     addCube() {
       // add object
@@ -71,7 +68,9 @@ export default {
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
       this.scene.add(mesh)
-
+      this.rotateCube(mesh)
+    },
+    rotateCube(mesh) {
       setInterval(() => {
         const now = new Date()
         const dig = now.getMilliseconds()
@@ -84,13 +83,13 @@ export default {
 
         const updateDeg = {
           x: currentDeg.x + Math.PI / 180,
-          y: currentDeg.y + Math.PI / 180,
+          y: currentDeg.y - Math.PI / 180,
           z: currentDeg.z + Math.PI / 180,
         }
 
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
         this.execRender()
-      }, 50)
+      }, 60)
     },
   },
 }
