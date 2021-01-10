@@ -13,10 +13,15 @@ export default {
   name: 'Main',
   data() {
     const renderer = new THREE.WebGLRenderer()
-    // const effect = new StereoEffect(renderer)
-    // effect.eyeSeparation = 10
-    // effect.setSize(window.innerWidth, window.innerHeight)
+
+    const camera = null
+    const scene = new THREE.Scene()
+    const light = new THREE.PointLight(0x00ffff)
+
     return {
+      camera,
+      scene,
+      light,
       renderer,
     }
   },
@@ -33,11 +38,9 @@ export default {
     this.renderer.setSize(this.windowWidth, this.windowHeight)
     this.renderer.setPixelRatio(window.devicePixelRatio)
 
-    // parse
     const container = document.getElementById('elementContainer')
     container.appendChild(this.renderer.domElement)
 
-    //  set camera (this operation should be after container.appendChild)
     this.camera = new THREE.PerspectiveCamera(
       60,
       this.windowWidth / this.windowHeight,
@@ -46,19 +49,10 @@ export default {
     )
     this.camera.position.z = 3
 
-    // add scene
-    this.scene = new THREE.Scene()
-
-    // add light
-    this.light = new THREE.PointLight(0x00ffff)
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
 
-    // add object
-    const geo = new THREE.BoxGeometry(1, 1, 1)
-    const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
-    this.mesh = new THREE.Mesh(geo, mat)
-    this.scene.add(this.mesh)
+    this.addCube()
 
     // set stereo view
     const effect = new StereoEffect(this.renderer)
@@ -68,6 +62,14 @@ export default {
 
     this.renderer.render(this.scene, this.camera)
   },
-  methods: {},
+  methods: {
+    addCube() {
+      // add object
+      const geo = new THREE.BoxGeometry(1, 1, 1)
+      const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
+      const mesh = new THREE.Mesh(geo, mat)
+      this.scene.add(mesh)
+    },
+  },
 }
 </script>
