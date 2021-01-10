@@ -134,8 +134,8 @@ var StereoEffect = __webpack_require__(/*! three-stereo-effect */ "./node_module
     this.renderer.setPixelRatio(window.devicePixelRatio);
     var container = document.getElementById('elementContainer');
     container.appendChild(this.renderer.domElement);
-    this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](60, this.windowWidth / this.windowHeight, 1, 10);
-    this.camera.position.z = 3;
+    this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](50, this.windowWidth / this.windowHeight, 1, 2000);
+    this.camera.position.z = 5;
     this.light.position.set(2, 2, 2);
     this.scene.add(this.light);
     this.addCube();
@@ -143,16 +143,12 @@ var StereoEffect = __webpack_require__(/*! three-stereo-effect */ "./node_module
   },
   methods: {
     execRender: function execRender() {
-      // set stereo view
       var effect = new StereoEffect(this.renderer);
       effect.eyeSeparation = 1;
       effect.setSize(window.innerWidth, window.innerHeight);
       effect.render(this.scene, this.camera);
-      this.renderer.render(this.scene, this.camera);
     },
     addCube: function addCube() {
-      var _this = this;
-
       // add object
       var geo = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](1, 1, 1);
       var mat = new three__WEBPACK_IMPORTED_MODULE_0__["MeshLambertMaterial"]({
@@ -160,6 +156,11 @@ var StereoEffect = __webpack_require__(/*! three-stereo-effect */ "./node_module
       });
       var mesh = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geo, mat);
       this.scene.add(mesh);
+      this.rotateCube(mesh);
+    },
+    rotateCube: function rotateCube(mesh) {
+      var _this = this;
+
       setInterval(function () {
         var now = new Date();
         var dig = now.getMilliseconds();
@@ -170,13 +171,13 @@ var StereoEffect = __webpack_require__(/*! three-stereo-effect */ "./node_module
         };
         var updateDeg = {
           x: currentDeg.x + Math.PI / 180,
-          y: currentDeg.y + Math.PI / 180,
+          y: currentDeg.y - Math.PI / 180,
           z: currentDeg.z + Math.PI / 180
         };
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z);
 
         _this.execRender();
-      }, 50);
+      }, 60);
     }
   }
 });
