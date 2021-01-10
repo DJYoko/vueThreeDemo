@@ -171,7 +171,6 @@ var StereoEffect = __webpack_require__(/*! three-stereo-effect */ "./node_module
         };
         var updateDeg = {
           x: currentDeg.x + Math.PI / 180,
-          y: currentDeg.y + Math.PI / 180,
           y: currentDeg.y - Math.PI / 180,
           z: currentDeg.z + Math.PI / 180
         };
