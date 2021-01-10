@@ -53,8 +53,7 @@ export default {
     this.scene.add(this.light)
 
     this.addCube()
-
-    // set stereo view
+    this.execRender()
   },
   methods: {
     execRender() {
