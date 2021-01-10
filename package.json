@@ -19,6 +19,7 @@
     "sass": "^1.32.2",
     "sass-loader": "^10.1.0",
     "three": "^0.124.0",
+    "three-stereo-effect": "^1.0.14",
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
