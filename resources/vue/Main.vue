@@ -55,20 +55,43 @@ export default {
     this.addCube()
 
     // set stereo view
-    const effect = new StereoEffect(this.renderer)
-    effect.eyeSeparation = 1
-    effect.setSize(window.innerWidth, window.innerHeight)
-    effect.render(this.scene, this.camera)
-
-    this.renderer.render(this.scene, this.camera)
   },
   methods: {
+    execRender() {
+      // set stereo view
+      const effect = new StereoEffect(this.renderer)
+      effect.eyeSeparation = 1
+      effect.setSize(window.innerWidth, window.innerHeight)
+      effect.render(this.scene, this.camera)
+
+      this.renderer.render(this.scene, this.camera)
+    },
     addCube() {
       // add object
       const geo = new THREE.BoxGeometry(1, 1, 1)
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
       this.scene.add(mesh)
+
+      setInterval(() => {
+        const now = new Date()
+        const dig = now.getMilliseconds()
+
+        const currentDeg = {
+          x: mesh.rotation.x,
+          y: mesh.rotation.y,
+          z: mesh.rotation.z,
+        }
+
+        const updateDeg = {
+          x: currentDeg.x + Math.PI / 180,
+          y: currentDeg.y + Math.PI / 180,
+          z: currentDeg.z + Math.PI / 180,
+        }
+
+        mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
+        this.execRender()
+      }, 50)
     },
   },
 }
