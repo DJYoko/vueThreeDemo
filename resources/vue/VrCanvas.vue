@@ -5,6 +5,8 @@
 <script>
 import * as THREE from 'three'
 const StereoEffect = require('three-stereo-effect')(THREE)
+const DeviceOrientationControls = require('three-device-orientation')
+const OrbitControls = require('three-orbit-controls')(THREE)
 
 export default {
   name: 'VrCanvas',
@@ -22,6 +24,16 @@ export default {
     }
   },
   computed: {
+    isMobile() {
+      const ua = navigator.userAgent
+      if (ua.indexOf('Android') != -1) {
+        return true
+      }
+      if (/(iPad|iPhone|iPod)/g.test(ua)) {
+        return true
+      }
+      return false
+    },
     windowWidth() {
       return window.innerWidth
     },
@@ -52,6 +64,37 @@ export default {
     this.execRender()
     this.addImage()
 
+    if (this.isMobile) {
+      // Android & iOS 12 or less
+      if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
+        window.addEventListener(
+          'deviceorientation',
+          this.setOrientationControls
+        )
+        return true
+      }
+
+      // iOS 13 or more
+      const container = this.$refs.elementContainer
+      container.addEventListener('click', () => {
+        // require HTTPS
+        DeviceOrientationEvent.requestPermission()
+          .then(function(response) {
+            if (response === 'granted') {
+              window.addEventListener(
+                'deviceorientation',
+                this.setOrientationControls
+              )
+            }
+          })
+          .catch(function(e) {
+            console.log(e)
+          })
+      })
+    } else {
+      // PC
+      this.setOrbitControls()
+    }
   },
   methods: {
     execRender() {
@@ -73,6 +116,33 @@ export default {
           plane.scale.set(w, h, 1)
           this.scene.add(plane)
         }
+      )
+    },
+    setOrbitControls() {
+      const htmlelm = this.$refs.elementContainer
+      const controls = new OrbitControls(this.camera, htmlelm)
+      controls.target.set(
+        this.camera.position.x + 0.15,
+        this.camera.position.y,
+        this.camera.position.z
+      )
+      controls.enableDamping = true
+      controls.rotateSpeed = -0.07
+      controls.enableZoom = false
+      controls.maxPolarAngle = 2.6
+      controls.minPolarAngle = 0.5
+    },
+    setOrientationControls(e) {
+      if (!e.alpha) {
+        return
+      }
+      const controls = new DeviceOrientationControls(this.camera, true)
+      controls.connect()
+      controls.update()
+      window.removeEventListener(
+        'deviceorientation',
+        this.setOrientationControls,
+        true
       )
     },
     addCube() {
