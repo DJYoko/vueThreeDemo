@@ -50,6 +50,8 @@ export default {
 
     this.addCube()
     this.execRender()
+    this.addImage()
+
   },
   methods: {
     execRender() {
@@ -57,6 +59,21 @@ export default {
       effect.eyeSeparation = 1
       effect.setSize(window.innerWidth, window.innerHeight)
       effect.render(this.scene, this.camera)
+    },
+    addImage() {
+      var texture = new THREE.TextureLoader().load(
+        './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
+        (tex) => {
+          const w = 10
+          const h = tex.image.height / (tex.image.width / w)
+
+          const geometry = new THREE.PlaneGeometry(1, 1)
+          const material = new THREE.MeshPhongMaterial({ map: texture })
+          const plane = new THREE.Mesh(geometry, material)
+          plane.scale.set(w, h, 1)
+          this.scene.add(plane)
+        }
+      )
     },
     addCube() {
       // add object
