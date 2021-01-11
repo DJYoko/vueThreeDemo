@@ -1,6 +1,6 @@
 <template>
   <div class="l-cover">
-    <div id="elementContainer" class="l-cover"></div>
+    <div class="l-cover" ref="elementContainer"></div>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
     this.renderer.setSize(this.windowWidth, this.windowHeight)
     this.renderer.setPixelRatio(window.devicePixelRatio)
 
-    const container = document.getElementById('elementContainer')
+    const container = this.$refs.elementContainer
     container.appendChild(this.renderer.domElement)
 
     this.camera = new THREE.PerspectiveCamera(
