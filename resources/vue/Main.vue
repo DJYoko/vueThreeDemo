@@ -19,7 +19,6 @@
 
 <script>
 import * as THREE from 'three'
-// import StereoEffect from 'three-stereo-effect'
 const StereoEffect = require('three-stereo-effect')(THREE)
 import RepositoryInformation from './RepositoryInformation'
 
@@ -28,7 +27,6 @@ export default {
   components: { RepositoryInformation },
   data() {
     const renderer = new THREE.WebGLRenderer()
-
     const camera = null
     const scene = new THREE.Scene()
     const light = new THREE.PointLight(0x00ffff)
