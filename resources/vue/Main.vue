@@ -1,6 +1,19 @@
 <template>
   <div class="l-cover">
     <div class="l-cover" ref="elementContainer"></div>
+    <div
+      class="p-repositoryInformation-switch"
+      @click="showRepositoryInformationModal"
+    >
+      repository information
+    </div>
+    <b-modal
+      id="repositoryInformationModal"
+      :hide-footer="true"
+      title="VUE Three Demo"
+    >
+      <RepositoryInformation />
+    </b-modal>
   </div>
 </template>
 
@@ -8,9 +21,11 @@
 import * as THREE from 'three'
 // import StereoEffect from 'three-stereo-effect'
 const StereoEffect = require('three-stereo-effect')(THREE)
+import RepositoryInformation from './RepositoryInformation'
 
 export default {
   name: 'Main',
+  components: { RepositoryInformation },
   data() {
     const renderer = new THREE.WebGLRenderer()
 
@@ -56,6 +71,9 @@ export default {
     this.execRender()
   },
   methods: {
+    showRepositoryInformationModal() {
+      this.$bvModal.show('repositoryInformationModal')
+    },
     execRender() {
       const effect = new StereoEffect(this.renderer)
       effect.eyeSeparation = 1
