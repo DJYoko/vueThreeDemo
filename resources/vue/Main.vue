@@ -87,6 +87,7 @@ export default {
       this.rotateCube(mesh)
     },
     rotateCube(mesh) {
+      const progress = Math.PI / 90
       setInterval(() => {
         const now = new Date()
         const dig = now.getMilliseconds()
@@ -98,14 +99,14 @@ export default {
         }
 
         const updateDeg = {
-          x: currentDeg.x + Math.PI / 180,
-          y: currentDeg.y - Math.PI / 180,
-          z: currentDeg.z + Math.PI / 180,
+          x: currentDeg.x + progress,
+          y: currentDeg.y + progress,
+          z: currentDeg.z + progress,
         }
 
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
         this.execRender()
-      }, 60)
+      }, 80)
     },
   },
 }
