@@ -45,7 +45,7 @@ export default {
     },
   },
   mounted() {
-    // set size & devicePixelRation
+    // set size & devicePixelRatio
     this.renderer.setSize(this.windowWidth, this.windowHeight)
     this.renderer.setPixelRatio(window.devicePixelRatio)
 
@@ -63,7 +63,7 @@ export default {
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
 
-    this.addCube()
+    // this.addCube()
     this.setStereoEffect()
     this.addImage()
 
