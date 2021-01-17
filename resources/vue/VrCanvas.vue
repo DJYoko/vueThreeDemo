@@ -182,7 +182,7 @@ export default {
 
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
         this.execRender()
-      }, 80)
+      }, 50)
     },
   },
 }
