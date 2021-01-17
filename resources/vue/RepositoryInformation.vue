@@ -12,6 +12,14 @@
         >https://github.com/DJYoko/vueThreeDemo</a
       >
     </li>
+    <li>
+      background photo:
+      <a
+        target="_blank"
+        href="https://www.flickr.com/photos/onohiroki/6860371067/"
+        >DSCN6011 Panorama by Hiroki ONO</a
+      >
+    </li>
   </ul>
 </template>
 
