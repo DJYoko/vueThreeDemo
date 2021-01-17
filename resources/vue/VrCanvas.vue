@@ -17,7 +17,6 @@ export default {
     const light = new THREE.PointLight(0x00ffff)
 
     return {
-      orbitControls: null,
       camera,
       scene,
       light,
@@ -53,10 +52,10 @@ export default {
     this.camera = new THREE.PerspectiveCamera(
       50,
       this.windowWidth / this.windowHeight,
-      0.1,
+      1,
       2000
     )
-    this.camera.position.z = 10
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -110,19 +109,16 @@ export default {
     },
     addImage() {
       var texture = new THREE.TextureLoader().load(
-        // './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
-        './img/6860371067_fe759ef565_h.jpg',
+        './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
         (tex) => {
-          const geometry = new THREE.SphereGeometry(100, 25, 25)
-          geometry.scale(-1, 1, 1)
+          const w = 10
+          const h = tex.image.height / (tex.image.width / w)
 
-          const material = new THREE.MeshBasicMaterial({ map: texture })
-
-          const sphere = new THREE.Mesh(geometry, material)
-          const sphereWidth = 1
-          const sphereHeight = 1
-          sphere.scale.set(sphereWidth, sphereHeight, 1)
-          this.scene.add(sphere)
+          const geometry = new THREE.PlaneGeometry(1, 1)
+          const material = new THREE.MeshPhongMaterial({ map: texture })
+          const plane = new THREE.Mesh(geometry, material)
+          plane.scale.set(w, h, 1)
+          this.scene.add(plane)
         }
       )
     },
