@@ -110,16 +110,19 @@ export default {
     },
     addImage() {
       var texture = new THREE.TextureLoader().load(
-        './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
+        // './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
+        './img/6860371067_fe759ef565_h.jpg',
         (tex) => {
-          const w = 10
-          const h = tex.image.height / (tex.image.width / w)
+          const geometry = new THREE.SphereGeometry(100, 25, 25)
+          geometry.scale(-1, 1, 1)
 
-          const geometry = new THREE.PlaneGeometry(1, 1)
-          const material = new THREE.MeshPhongMaterial({ map: texture })
-          const plane = new THREE.Mesh(geometry, material)
-          plane.scale.set(w, h, 1)
-          this.scene.add(plane)
+          const material = new THREE.MeshBasicMaterial({ map: texture })
+
+          const sphere = new THREE.Mesh(geometry, material)
+          const sphereWidth = 1
+          const sphereHeight = 1
+          sphere.scale.set(sphereWidth, sphereHeight, 1)
+          this.scene.add(sphere)
         }
       )
     },
