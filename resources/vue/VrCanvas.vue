@@ -163,9 +163,10 @@ export default {
       if (!e.alpha) {
         return
       }
+      const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera,
-        true
+        htmlelm
       )
       this.deviceOrientationControls.connect()
       window.removeEventListener(
