@@ -64,7 +64,16 @@ export default {
     this.execRender()
     this.addImage()
 
-    if (this.isMobile) {
+    // sync Device control and angle
+    this.setPointOfView()
+  },
+  methods: {
+    setPointOfView() {
+      if (this.isMobile) {
+        // PC
+        this.setOrbitControls()
+      }
+
       // Android & iOS 12 or less
       if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
         window.addEventListener(
@@ -91,12 +100,7 @@ export default {
             console.log(e)
           })
       })
-    } else {
-      // PC
-      this.setOrbitControls()
-    }
-  },
-  methods: {
+    },
     execRender() {
       const effect = new StereoEffect(this.renderer)
       effect.eyeSeparation = 1
