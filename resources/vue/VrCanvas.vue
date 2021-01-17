@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     setPointOfView() {
-      if (this.isMobile) {
+      if (!this.isMobile) {
         // PC
         this.setOrbitControls()
       }
