@@ -159,9 +159,8 @@ export default {
       // const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
-        // htmlelm
       )
-      // this.deviceOrientationControls.connect()
+      this.deviceOrientationControls.connect()
       // window.removeEventListener(
       //   'deviceorientation',
       //   this.setOrientationControls,
