@@ -155,22 +155,21 @@ export default {
       this.orbitControls.minPolarAngle = 0.5
     },
     setOrientationControls(e) {
-      console.log('call setOrientationControls')
       if (!e.alpha) {
         return
       }
-      console.log('setOrientationControls runs')
 
-      // const htmlelm = this.$refs.elementContainer
-      this.deviceOrientationControls = new DeviceOrientationControls(
-        this.camera
-      )
-      this.deviceOrientationControls.connect()
-      // window.removeEventListener(
-      //   'deviceorientation',
-      //   this.setOrientationControls,
-      //   true
-      // )
+      //at once
+      if (this.deviceOrientationControls === null) {
+        // const htmlelm = this.$refs.elementContainer
+        this.deviceOrientationControls = new DeviceOrientationControls(
+          this.camera
+        )
+        this.deviceOrientationControls.connect()
+      }
+
+      // call at every orientationChanged event
+      this.deviceOrientationControls.update()
     },
     addCube() {
       // add object
