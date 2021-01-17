@@ -17,6 +17,7 @@ export default {
     const light = new THREE.PointLight(0x00ffff)
 
     return {
+      stereoEffect: null,
       deviceOrientationControls: null,
       orbitControls: null,
       camera,
@@ -63,13 +64,35 @@ export default {
     this.scene.add(this.light)
 
     this.addCube()
-    this.execRender()
+    this.setStereoEffect()
     this.addImage()
 
     // sync Device control and angle
     this.setPointOfView()
+
+    // start motion
+    this._tick()
   },
   methods: {
+    _tick() {
+      // Mobile
+      if (this.deviceOrientationControls) {
+        this.deviceOrientationControls.update()
+      }
+
+      // PC
+      if (this.orbitControls) {
+        this.orbitControls.update()
+      }
+
+      this.execRender()
+      requestAnimationFrame(this._tick)
+    },
+    setStereoEffect() {
+      this.stereoEffect = new StereoEffect(this.renderer)
+      this.stereoEffect.eyeSeparation = 1
+      this.stereoEffect.setSize(window.innerWidth, window.innerHeight)
+    },
     setPointOfView() {
       if (!this.isMobile) {
         // PC
@@ -107,14 +130,10 @@ export default {
       if (this.deviceOrientationControls) {
         this.deviceOrientationControls.update()
       }
-      const effect = new StereoEffect(this.renderer)
-      effect.eyeSeparation = 1
-      effect.setSize(window.innerWidth, window.innerHeight)
-      effect.render(this.scene, this.camera)
+      this.stereoEffect.render(this.scene, this.camera)
     },
     addImage() {
-      var texture = new THREE.TextureLoader().load(
-        // './img/rodrigo-soares-SCvlb1FWeuY-unsplash.jpg',
+      const texture = new THREE.TextureLoader().load(
         './img/6860371067_fe759ef565_h.jpg',
         (tex) => {
           const geometry = new THREE.SphereGeometry(100, 25, 25)
@@ -127,6 +146,7 @@ export default {
           const sphereHeight = 1
           sphere.scale.set(sphereWidth, sphereHeight, 1)
           this.scene.add(sphere)
+          this.execRender()
         }
       )
     },
@@ -181,8 +201,7 @@ export default {
         }
 
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
-        this.execRender()
-      }, 50)
+      }, 80)
     },
   },
 }
