@@ -17,6 +17,7 @@ export default {
     const light = new THREE.PointLight(0x00ffff)
 
     return {
+      deviceOrientationControls: null,
       orbitControls: null,
       camera,
       scene,
@@ -103,6 +104,9 @@ export default {
       })
     },
     execRender() {
+      if (this.deviceOrientationControls) {
+        this.deviceOrientationControls.update()
+      }
       const effect = new StereoEffect(this.renderer)
       effect.eyeSeparation = 1
       effect.setSize(window.innerWidth, window.innerHeight)
@@ -139,9 +143,11 @@ export default {
       if (!e.alpha) {
         return
       }
-      const controls = new DeviceOrientationControls(this.camera, true)
-      controls.connect()
-      controls.update()
+      this.deviceOrientationControls = new DeviceOrientationControls(
+        this.camera,
+        true
+      )
+      this.deviceOrientationControls.connect()
       window.removeEventListener(
         'deviceorientation',
         this.setOrientationControls,
@@ -176,7 +182,7 @@ export default {
 
         mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
         this.execRender()
-      }, 80)
+      }, 50)
     },
   },
 }
