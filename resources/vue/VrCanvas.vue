@@ -77,7 +77,6 @@ export default {
     _tick() {
       // Mobile
       if (this.deviceOrientationControls) {
-        this.deviceOrientationControls.connect()
         this.deviceOrientationControls.update()
       }
 
@@ -157,16 +156,17 @@ export default {
       if (!e.alpha) {
         return
       }
-      const htmlelm = this.$refs.elementContainer
+      // const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
-        this.camera,
-        htmlelm
+        this.camera
+        // htmlelm
       )
-      window.removeEventListener(
-        'deviceorientation',
-        this.setOrientationControls,
-        true
-      )
+      // this.deviceOrientationControls.connect()
+      // window.removeEventListener(
+      //   'deviceorientation',
+      //   this.setOrientationControls,
+      //   true
+      // )
     },
     addCube() {
       // add object
