@@ -124,12 +124,17 @@ export default {
     },
     setOrbitControls() {
       const htmlelm = this.$refs.elementContainer
-      this.orbitControls = new OrbitControls(this.camera, htmlelm)
-      this.orbitControls.enableDamping = true
-      this.orbitControls.rotateSpeed = 1
-      this.orbitControls.enableZoom = false
-      this.orbitControls.maxPolarAngle = 2.6
-      this.orbitControls.minPolarAngle = 0.5
+      const controls = new OrbitControls(this.camera, htmlelm)
+      controls.target.set(
+        this.camera.position.x + 0.15,
+        this.camera.position.y,
+        this.camera.position.z
+      )
+      controls.enableDamping = true
+      controls.rotateSpeed = -0.07
+      controls.enableZoom = false
+      controls.maxPolarAngle = 2.6
+      controls.minPolarAngle = 0.5
     },
     setOrientationControls(e) {
       if (!e.alpha) {
