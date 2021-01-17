@@ -63,7 +63,7 @@ export default {
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
 
-    // this.addCube()
+    this.addCube()
     this.setStereoEffect()
     this.addImage()
 
@@ -75,9 +75,20 @@ export default {
   },
   methods: {
     _tick() {
-      this.execRender()
+      // Mobile
+      if (this.deviceOrientationControls) {
+        this.deviceOrientationControls.connect()
+        this.deviceOrientationControls.update()
+      }
+
+      // PC
+      if (this.orbitControls) {
+        this.orbitControls.update()
+      }
+      this.stereoEffect.render(this.scene, this.camera)
       requestAnimationFrame(this._tick)
     },
+
     setStereoEffect() {
       this.stereoEffect = new StereoEffect(this.renderer)
       this.stereoEffect.eyeSeparation = 1
@@ -116,24 +127,11 @@ export default {
           })
       })
     },
-    execRender() {
-      // Mobile
-      if (this.deviceOrientationControls) {
-        this.deviceOrientationControls.connect()
-        this.deviceOrientationControls.update()
-      }
-
-      // PC
-      if (this.orbitControls) {
-        this.orbitControls.update()
-      }
-      this.stereoEffect.render(this.scene, this.camera)
-    },
     addImage() {
       const texture = new THREE.TextureLoader().load(
         './img/6860371067_fe759ef565_h.jpg',
         (tex) => {
-          const geometry = new THREE.SphereGeometry(100, 25, 25)
+          const geometry = new THREE.SphereGeometry(5, 24, 18)
           geometry.scale(-1, 1, 1)
 
           const material = new THREE.MeshBasicMaterial({ map: texture })
