@@ -75,16 +75,6 @@ export default {
   },
   methods: {
     _tick() {
-      // Mobile
-      if (this.deviceOrientationControls) {
-        this.deviceOrientationControls.update()
-      }
-
-      // PC
-      if (this.orbitControls) {
-        this.orbitControls.update()
-      }
-
       this.execRender()
       requestAnimationFrame(this._tick)
     },
@@ -127,8 +117,15 @@ export default {
       })
     },
     execRender() {
+      // Mobile
       if (this.deviceOrientationControls) {
+        this.deviceOrientationControls.connect()
         this.deviceOrientationControls.update()
+      }
+
+      // PC
+      if (this.orbitControls) {
+        this.orbitControls.update()
       }
       this.stereoEffect.render(this.scene, this.camera)
     },
@@ -146,7 +143,6 @@ export default {
           const sphereHeight = 1
           sphere.scale.set(sphereWidth, sphereHeight, 1)
           this.scene.add(sphere)
-          this.execRender()
         }
       )
     },
@@ -168,7 +164,6 @@ export default {
         this.camera,
         htmlelm
       )
-      this.deviceOrientationControls.connect()
       window.removeEventListener(
         'deviceorientation',
         this.setOrientationControls,
