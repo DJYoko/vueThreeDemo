@@ -60,15 +60,15 @@ export default {
     )
     this.camera.position.z = 10
 
+    // sync Device control and angle
+    this.setPointOfView()
+
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
 
     this.addCube()
     this.setStereoEffect()
     this.addImage()
-
-    // sync Device control and angle
-    this.setPointOfView()
 
     // start motion
     this._tick()
@@ -159,17 +159,18 @@ export default {
         return
       }
 
-      //at once
-      if (this.deviceOrientationControls === null) {
-        // const htmlelm = this.$refs.elementContainer
-        this.deviceOrientationControls = new DeviceOrientationControls(
-          this.camera
-        )
-        this.deviceOrientationControls.connect()
-      }
+      // const htmlelm = this.$refs.elementContainer
+      this.deviceOrientationControls = new DeviceOrientationControls(
+        this.camera
+      )
+      this.deviceOrientationControls.connect()
 
-      // call at every orientationChanged event
-      this.deviceOrientationControls.update()
+      // call at once
+      window.removeEventListener(
+        'deviceorientation',
+        this.setOrientationControls,
+        true
+      )
     },
     addCube() {
       // add object
