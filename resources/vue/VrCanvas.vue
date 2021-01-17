@@ -77,6 +77,7 @@ export default {
     _tick() {
       // Mobile
       if (this.deviceOrientationControls) {
+        console.log('deviceOrientationControls update')
         this.deviceOrientationControls.update()
       }
 
@@ -97,6 +98,7 @@ export default {
       if (!this.isMobile) {
         // PC
         this.setOrbitControls()
+        return false
       }
 
       // Android & iOS 12 or less
@@ -153,9 +155,12 @@ export default {
       this.orbitControls.minPolarAngle = 0.5
     },
     setOrientationControls(e) {
+      console.log('call setOrientationControls')
       if (!e.alpha) {
         return
       }
+      console.log('setOrientationControls runs')
+
       // const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
