@@ -104,6 +104,11 @@ export default {
         return false
       }
 
+      // non SSL env
+      if (typeof DeviceOrientationEvent === 'undefined') {
+        return false
+      }
+
       // Android & iOS 12 or less
       if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
         window.addEventListener(
