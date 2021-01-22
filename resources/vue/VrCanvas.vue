@@ -12,14 +12,17 @@ export default {
   name: 'VrCanvas',
   data() {
     const renderer = new THREE.WebGLRenderer()
+    const stereoEffect = null
     const camera = null
+    const deviceOrientationControls = null
+    const orbitControls = null
     const scene = new THREE.Scene()
     const light = new THREE.PointLight(0x00ffff)
 
     return {
-      stereoEffect: null,
-      deviceOrientationControls: null,
-      orbitControls: null,
+      stereoEffect,
+      deviceOrientationControls,
+      orbitControls,
       camera,
       scene,
       light,
@@ -53,15 +56,16 @@ export default {
     container.appendChild(this.renderer.domElement)
 
     this.camera = new THREE.PerspectiveCamera(
-      50,
+      75,
       this.windowWidth / this.windowHeight,
       0.1,
-      2000
+      1100
     )
-    this.camera.position.z = 10
 
     // sync Device control and angle
     this.setPointOfView()
+
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -75,9 +79,11 @@ export default {
   },
   methods: {
     _tick() {
+      requestAnimationFrame(this._tick)
+      this.stereoEffect.render(this.scene, this.camera)
+
       // Mobile
       if (this.deviceOrientationControls) {
-        console.log('deviceOrientationControls update')
         this.deviceOrientationControls.update()
       }
 
@@ -85,8 +91,6 @@ export default {
       if (this.orbitControls) {
         this.orbitControls.update()
       }
-      this.stereoEffect.render(this.scene, this.camera)
-      requestAnimationFrame(this._tick)
     },
 
     setStereoEffect() {
@@ -98,6 +102,11 @@ export default {
       if (!this.isMobile) {
         // PC
         this.setOrbitControls()
+        return false
+      }
+
+      // non SSL env
+      if (typeof DeviceOrientationEvent === 'undefined') {
         return false
       }
 
@@ -174,7 +183,7 @@ export default {
     },
     addCube() {
       // add object
-      const geo = new THREE.BoxGeometry(1, 1, 1)
+      const geo = new THREE.BoxGeometry(0.1, 0.1, 0.1)
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
       this.scene.add(mesh)
