@@ -61,10 +61,11 @@ export default {
       0.1,
       1100
     )
-    this.camera.position.z = 2
 
     // sync Device control and angle
     this.setPointOfView()
+
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
