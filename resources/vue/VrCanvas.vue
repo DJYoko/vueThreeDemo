@@ -65,7 +65,7 @@ export default {
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 5
+    this.camera.position.z = 7
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -80,7 +80,6 @@ export default {
   methods: {
     _tick() {
       requestAnimationFrame(this._tick)
-      this.stereoEffect.render(this.scene, this.camera)
 
       // Mobile
       if (this.deviceOrientationControls) {
@@ -91,6 +90,8 @@ export default {
       if (this.orbitControls) {
         this.orbitControls.update()
       }
+
+      this.stereoEffect.render(this.scene, this.camera)
     },
 
     setStereoEffect() {
