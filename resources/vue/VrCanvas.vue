@@ -67,7 +67,7 @@ export default {
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 7
+    this.camera.position.z = 3
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
