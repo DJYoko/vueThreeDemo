@@ -20,6 +20,7 @@ export default {
     const light = new THREE.PointLight(0x00ffff)
 
     return {
+      issetDeviceOrientationEvent: false,
       stereoEffect,
       deviceOrientationControls,
       orbitControls,
@@ -117,13 +118,13 @@ export default {
           'deviceorientation',
           this.setOrientationControls
         )
-        this.$nextTick(() => {
-          window.removeEventListener(
-            'deviceorientation',
-            this.setOrientationControls,
-            true
-          )
-        })
+        // this.$nextTick(() => {
+        //   window.removeEventListener(
+        //     'deviceorientation',
+        //     this.setOrientationControls,
+        //     true
+        //   )
+        // })
 
         return true
       }
@@ -173,10 +174,15 @@ export default {
       this.orbitControls.minPolarAngle = 0.5
     },
     setOrientationControls(e) {
+      if (this.issetDeviceOrientationEvent) {
+        return false
+      }
+      this.issetDeviceOrientationEvent = true
+
       if (!e.alpha) {
         return
       }
-      alert('setOrientationControls')
+
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
