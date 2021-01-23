@@ -113,11 +113,18 @@ export default {
 
       // Android & iOS 12 or less
       if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
-        // window.addEventListener(
-        //   'deviceorientation',
-        //   this.setOrientationControls
-        // )
-        this.setOrientationControls()
+        window.addEventListener(
+          'deviceorientation',
+          this.setOrientationControls
+        )
+        this.$nextTick(() => {
+          window.removeEventListener(
+            'deviceorientation',
+            this.setOrientationControls,
+            true
+          )
+        })
+
         return true
       }
 
@@ -170,18 +177,10 @@ export default {
         return
       }
 
-      // const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
       this.deviceOrientationControls.connect()
-
-      // call at once
-      // window.removeEventListener(
-      //   'deviceorientation',
-      //   this.setOrientationControls,
-      //   true
-      // )
     },
     addCube() {
       // add object
