@@ -128,7 +128,6 @@ export default {
         // require HTTPS
         DeviceOrientationEvent.requestPermission()
           .then((response) => {
-            alert(response)
             if (response === 'granted') {
               window.addEventListener(
                 'deviceorientation',
@@ -137,7 +136,7 @@ export default {
             }
           })
           .catch(function(e) {
-            alert(e)
+            console.log(e)
           })
       })
     },
@@ -168,7 +167,6 @@ export default {
       this.orbitControls.minPolarAngle = 0.5
     },
     setOrientationControls(e) {
-      alert('171 setOrientationControls')
       if (this.isDeviceOrientationControl) {
         return false
       }
@@ -177,7 +175,6 @@ export default {
       if (!e.alpha) {
         return
       }
-      alert('180 setOrientationControls')
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
