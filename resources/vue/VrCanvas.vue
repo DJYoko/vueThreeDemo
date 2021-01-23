@@ -113,10 +113,11 @@ export default {
 
       // Android & iOS 12 or less
       if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
-        window.addEventListener(
-          'deviceorientation',
-          this.setOrientationControls
-        )
+        // window.addEventListener(
+        //   'deviceorientation',
+        //   this.setOrientationControls
+        // )
+        this.setOrientationControls()
         return true
       }
 
@@ -176,11 +177,11 @@ export default {
       this.deviceOrientationControls.connect()
 
       // call at once
-      window.removeEventListener(
-        'deviceorientation',
-        this.setOrientationControls,
-        true
-      )
+      // window.removeEventListener(
+      //   'deviceorientation',
+      //   this.setOrientationControls,
+      //   true
+      // )
     },
     addCube() {
       // add object
