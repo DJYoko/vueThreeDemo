@@ -176,7 +176,7 @@ export default {
       if (!e.alpha) {
         return
       }
-
+      alert('setOrientationControls')
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
