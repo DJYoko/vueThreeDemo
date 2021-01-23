@@ -127,8 +127,8 @@ export default {
       container.addEventListener('click', () => {
         // require HTTPS
         DeviceOrientationEvent.requestPermission()
-          .then(function(response) {
-            console.log(response)
+          .then((response) => {
+            alert(response)
             if (response === 'granted') {
               window.addEventListener(
                 'deviceorientation',
@@ -137,7 +137,7 @@ export default {
             }
           })
           .catch(function(e) {
-            console.log(e)
+            alert(e)
           })
       })
     },
