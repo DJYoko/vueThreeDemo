@@ -5,7 +5,7 @@
       class="p-repositoryInformation-switch"
       @click="showRepositoryInformationModal"
     >
-      2238 info
+      2243 info
     </div>
     <b-modal
       id="repositoryInformationModal"
