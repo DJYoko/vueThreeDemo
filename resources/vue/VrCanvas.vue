@@ -4,8 +4,9 @@
 
 <script>
 import * as THREE from 'three'
+import DeviceOrientationControls from 'three-device-orientation'
 const StereoEffect = require('three-stereo-effect')(THREE)
-const DeviceOrientationControls = require('three-device-orientation')
+// const DeviceOrientationControls = require('three-device-orientation')
 const OrbitControls = require('three-orbit-controls')(THREE)
 
 export default {
@@ -182,7 +183,7 @@ export default {
       if (!e.alpha) {
         return
       }
-
+      console.log('setOrientationControls')
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
