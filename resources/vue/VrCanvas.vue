@@ -61,13 +61,13 @@ export default {
       75,
       this.windowWidth / this.windowHeight,
       0.1,
-      1100
+      2000
     )
 
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 6
+    this.camera.position.z = 4
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
