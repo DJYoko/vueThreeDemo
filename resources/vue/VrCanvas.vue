@@ -192,8 +192,6 @@ export default {
       const size = 0.05 * Math.random()
 
       // make random position from -3 to 3
-      const initialX = Math.random() * 5 - 5
-      const initialZ = Math.random() * 5 - 5
       const fallingAreaRange = 4
       const initialX = Math.random() * fallingAreaRange - fallingAreaRange / 2
       const initialZ = Math.random() * fallingAreaRange - fallingAreaRange / 2
