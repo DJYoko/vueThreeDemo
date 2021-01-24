@@ -185,7 +185,7 @@ export default {
     snowing() {
       setInterval(() => {
         this._addSnow()
-      }, 50)
+      }, 400)
     },
     _addSnow() {
       // add object
@@ -203,7 +203,7 @@ export default {
       mesh.position.set(position.x, position.y, position.z)
 
       this.scene.add(mesh)
-      const fallSpeed = 0.03
+      const fallSpeed = 50
       const verticalMove = 0.01
 
       const falling = setInterval(() => {
@@ -211,6 +211,7 @@ export default {
         if (positionY < -5) {
           clearInterval(falling)
           this.scene.remove(mesh)
+          return false
         }
 
         const meshPosition = mesh.position
@@ -220,10 +221,10 @@ export default {
           Math.random() > 0.5 ? verticalMove : -1 * verticalMove
         const positionX = meshPosition.x + positionXdiff
         const positionZ = meshPosition.z + positionZdiff
-        const positionY = meshPosition.y - fallSpeed
+        const positionY = meshPosition.y - fallSpeed / 1000
 
         meshPosition.set(positionX, positionY, positionZ)
-      }, 20)
+      }, fallSpeed)
     },
     addCube() {
       // add object
