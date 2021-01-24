@@ -20,7 +20,6 @@ export default {
     const light = new THREE.PointLight(0xffffff)
 
     return {
-      snows: [],
       stereoEffect,
       deviceOrientationControls,
       orbitControls,
@@ -66,7 +65,7 @@ export default {
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 5
+    this.camera.position.z = 4
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -184,27 +183,42 @@ export default {
       )
     },
     snowing() {
-      this._addSnow()
+      setInterval(() => {
+        this._addSnow()
+      }, 50)
     },
     _addSnow() {
       // add object
       const size = 0.05 * Math.random()
 
+      // make random position from -3 to 3
+      const initialX = Math.random() * 5 - 5
+      const initialZ = Math.random() * 5 - 5
+
       const geo = new THREE.SphereGeometry(size, 10, 10)
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
-      const position = { x: 0, y: 5, z: 0 }
+      const position = { x: initialX, y: 5, z: initialZ }
       mesh.position.set(position.x, position.y, position.z)
       this.scene.add(mesh)
-      this.snows.push({
-        mesh,
-        position,
-      })
+      const fallSpeed = 0.05
+      const verticalMove = 0.01
 
-      setInterval(() => {
-        position.y = position.y - 0.1
-        mesh.position.set(0, position.y, 0)
-      }, 100)
+      const falling = setInterval(() => {
+        const positionXdiff =
+          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
+        const positionZdiff =
+          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
+        const positionX = mesh.position.x + positionXdiff
+        const positionZ = mesh.position.z + positionZdiff
+        const positionY = mesh.position.y - fallSpeed
+
+        mesh.position.set(positionX, positionY, positionZ)
+        if (positionY < -5) {
+          clearInterval(falling)
+          this.scene.remove(mesh)
+        }
+      }, 20)
     },
     addCube() {
       // add object
