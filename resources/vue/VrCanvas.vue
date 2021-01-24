@@ -18,7 +18,7 @@ export default {
     const deviceOrientationControls = null
     const orbitControls = null
     const scene = new THREE.Scene()
-    const light = new THREE.PointLight(0x00ffff)
+    const light = new THREE.PointLight(0xffffff)
 
     return {
       isDeviceOrientationControl: false,
