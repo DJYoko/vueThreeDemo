@@ -185,13 +185,12 @@ export default {
     snowing() {
       setInterval(() => {
         this._addSnow()
-      }, 400)
+      }, 200)
     },
     _addSnow() {
       // add object
       const size = 0.05 * Math.random()
 
-      // make random position from -3 to 3
       const fallingAreaRange = 4
       const initialX = Math.random() * fallingAreaRange - fallingAreaRange / 2
       const initialZ = Math.random() * fallingAreaRange - fallingAreaRange / 2
@@ -199,16 +198,16 @@ export default {
       const geo = new THREE.SphereGeometry(size, 10, 10)
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
-      const position = { x: initialX, y: 5, z: initialZ }
+      const position = { x: initialX, y: 4, z: initialZ }
       mesh.position.set(position.x, position.y, position.z)
 
       this.scene.add(mesh)
-      const fallSpeed = 50
+      const fallSpeed = 30
       const verticalMove = 0.01
 
       const falling = setInterval(() => {
         // remove snow when it touches ground
-        if (positionY < -5) {
+        if (positionY < 0) {
           clearInterval(falling)
           this.scene.remove(mesh)
           return false
@@ -221,10 +220,10 @@ export default {
           Math.random() > 0.5 ? verticalMove : -1 * verticalMove
         const positionX = meshPosition.x + positionXdiff
         const positionZ = meshPosition.z + positionZdiff
-        const positionY = meshPosition.y - fallSpeed / 1000
+        const positionY = meshPosition.y - fallSpeed / 400
 
         meshPosition.set(positionX, positionY, positionZ)
-      }, fallSpeed)
+      }, 1000 / fallSpeed)
     },
     addCube() {
       // add object
