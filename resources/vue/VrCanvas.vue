@@ -18,7 +18,7 @@ export default {
     const deviceOrientationControls = null
     const orbitControls = null
     const scene = new THREE.Scene()
-    const light = new THREE.PointLight(0xffffff)
+    const light = new THREE.PointLight(0x00ffff)
 
     return {
       isDeviceOrientationControl: false,
@@ -61,13 +61,13 @@ export default {
       75,
       this.windowWidth / this.windowHeight,
       0.1,
-      2000
+      1100
     )
 
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 4
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
