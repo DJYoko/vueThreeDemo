@@ -194,30 +194,37 @@ export default {
       // make random position from -3 to 3
       const initialX = Math.random() * 5 - 5
       const initialZ = Math.random() * 5 - 5
+      const fallingAreaRange = 4
+      const initialX = Math.random() * fallingAreaRange - fallingAreaRange / 2
+      const initialZ = Math.random() * fallingAreaRange - fallingAreaRange / 2
 
       const geo = new THREE.SphereGeometry(size, 10, 10)
       const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
       const mesh = new THREE.Mesh(geo, mat)
       const position = { x: initialX, y: 5, z: initialZ }
       mesh.position.set(position.x, position.y, position.z)
+
       this.scene.add(mesh)
-      const fallSpeed = 0.05
+      const fallSpeed = 0.03
       const verticalMove = 0.01
 
       const falling = setInterval(() => {
-        const positionXdiff =
-          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
-        const positionZdiff =
-          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
-        const positionX = mesh.position.x + positionXdiff
-        const positionZ = mesh.position.z + positionZdiff
-        const positionY = mesh.position.y - fallSpeed
-
-        mesh.position.set(positionX, positionY, positionZ)
+        // remove snow when it touches ground
         if (positionY < -5) {
           clearInterval(falling)
           this.scene.remove(mesh)
         }
+
+        const meshPosition = mesh.position
+        const positionXdiff =
+          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
+        const positionZdiff =
+          Math.random() > 0.5 ? verticalMove : -1 * verticalMove
+        const positionX = meshPosition.x + positionXdiff
+        const positionZ = meshPosition.z + positionZdiff
+        const positionY = meshPosition.y - fallSpeed
+
+        meshPosition.set(positionX, positionY, positionZ)
       }, 20)
     },
     addCube() {
