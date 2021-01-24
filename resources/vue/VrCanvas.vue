@@ -17,9 +17,10 @@ export default {
     const deviceOrientationControls = null
     const orbitControls = null
     const scene = new THREE.Scene()
-    const light = new THREE.PointLight(0x00ffff)
+    const light = new THREE.PointLight(0xffffff)
 
     return {
+      snows: [],
       stereoEffect,
       deviceOrientationControls,
       orbitControls,
@@ -70,7 +71,8 @@ export default {
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
 
-    this.addCube()
+    // this.addCube()
+    this.snowing()
     this.setStereoEffect()
     this.addImage()
 
@@ -180,6 +182,29 @@ export default {
         this.setOrientationControls,
         true
       )
+    },
+    snowing() {
+      this._addSnow()
+    },
+    _addSnow() {
+      // add object
+      const size = 0.05 * Math.random()
+
+      const geo = new THREE.SphereGeometry(size, 10, 10)
+      const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
+      const mesh = new THREE.Mesh(geo, mat)
+      const position = { x: 0, y: 5, z: 0 }
+      mesh.position.set(position.x, position.y, position.z)
+      this.scene.add(mesh)
+      this.snows.push({
+        mesh,
+        position,
+      })
+
+      setInterval(() => {
+        position.y = position.y - 0.1
+        mesh.position.set(0, position.y, 0)
+      }, 100)
     },
     addCube() {
       // add object
