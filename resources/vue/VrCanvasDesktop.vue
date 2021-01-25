@@ -146,35 +146,6 @@ export default {
         meshPosition.set(positionX, positionY, positionZ)
       }, 1000 / fallSpeed)
     },
-    addCube() {
-      // add object
-      const geo = new THREE.BoxGeometry(0.1, 0.1, 0.1)
-      const mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
-      const mesh = new THREE.Mesh(geo, mat)
-      this.scene.add(mesh)
-      this.rotateCube(mesh)
-    },
-    rotateCube(mesh) {
-      const progress = Math.PI / 90
-      setInterval(() => {
-        const now = new Date()
-        const dig = now.getMilliseconds()
-
-        const currentDeg = {
-          x: mesh.rotation.x,
-          y: mesh.rotation.y,
-          z: mesh.rotation.z,
-        }
-
-        const updateDeg = {
-          x: currentDeg.x + progress,
-          y: currentDeg.y + progress,
-          z: currentDeg.z + progress,
-        }
-
-        mesh.rotation.set(updateDeg.x, updateDeg.y, updateDeg.z)
-      }, 80)
-    },
   },
 }
 </script>
