@@ -1,5 +1,9 @@
 <template>
-  <div class="l-cover"><VrCanvasDesktop /></div>
+  <div class="l-cover">
+    <VrCanvasDesktop />
+    <a class="p-backLink" href="../">back</a>
+    <div class="p-modeInfo">Desktop Mode</div>
+  </div>
 </template>
 
 <script>

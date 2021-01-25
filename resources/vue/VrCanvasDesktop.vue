@@ -1,8 +1,5 @@
 <template>
-  <div class="l-cover" ref="elementContainer">
-    <a class="p-backLink" href="../">back</a>
-    <div class="p-modeInfo">Desktop Mode</div>
-  </div>
+  <div class="l-cover" ref="elementContainer"></div>
 </template>
 
 <script>
