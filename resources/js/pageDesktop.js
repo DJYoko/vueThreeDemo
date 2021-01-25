@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PageDesktop from '../vue/PageDesktop'
+import ThePageDesktop from '../vue/page/ThePageDesktop'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -11,7 +11,7 @@ Vue.use(BootstrapVue)
 new Vue({
     el: '#pageDesktop',
     components: {
-        PageDesktop
+        ThePageDesktop
     },
-    template: '<PageDesktop/>'
+    template: '<ThePageDesktop/>'
 })

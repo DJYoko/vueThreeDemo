@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PageMobile from '../vue/PageMobile'
+import ThePageMobile from '../vue/page/ThePageMobile'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -11,7 +11,7 @@ Vue.use(BootstrapVue)
 new Vue({
     el: '#pageMobile',
     components: {
-        PageMobile
+        ThePageMobile
     },
-    template: '<PageMobile/>'
+    template: '<ThePageMobile/>'
 })
