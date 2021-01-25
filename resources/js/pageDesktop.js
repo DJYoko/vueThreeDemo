@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Main from '../vue/Main'
+import ThePageDesktop from '../vue/page/ThePageDesktop'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -9,9 +9,9 @@ Vue.config.productionTip = true
 Vue.use(BootstrapVue)
 
 new Vue({
-    el: '#app',
+    el: '#pageDesktop',
     components: {
-        Main
+        ThePageDesktop
     },
-    template: '<Main/>'
+    template: '<ThePageDesktop/>'
 })
