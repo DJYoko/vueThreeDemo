@@ -13,6 +13,7 @@ body {
     position: absolute;
     right: 12px;
     bottom: 12px;
+    cursor: pointer;
 }
 
 .p-topPage {
@@ -25,9 +26,11 @@ body {
     padding: 20px;
     border: 1px solid #f2f2f2;
     color: #f2f2f2;
+    text-decoration: none;
     transition: all ease-out 0.2s;
 
     &:hover {
+        text-decoration: none;
         background-color: #f2f2f2;
         color: #222;
     }
