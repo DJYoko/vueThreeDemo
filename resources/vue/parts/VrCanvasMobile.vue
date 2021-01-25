@@ -6,6 +6,7 @@
 import snowing from '../mixins/snowing'
 import backgroundSphere from '../mixins/backgroundSphere'
 import * as THREE from 'three'
+import DeviceOrientationControls from 'three-device-orientation'
 const StereoEffect = require('three-stereo-effect')(THREE)
 const DeviceOrientationControls = require('three-device-orientation')
 
@@ -21,6 +22,7 @@ export default {
     const light = new THREE.PointLight(0xffffff)
 
     return {
+      isDeviceOrientationControl: false,
       stereoEffect,
       deviceOrientationControls,
       camera,
@@ -65,7 +67,7 @@ export default {
     // sync Device control and angle
     this.setPointOfView()
 
-    this.camera.position.z = 4
+    this.camera.position.z = 5
 
     this.light.position.set(2, 2, 2)
     this.scene.add(this.light)
@@ -80,11 +82,12 @@ export default {
   methods: {
     _tick() {
       requestAnimationFrame(this._tick)
-      this.stereoEffect.render(this.scene, this.camera)
 
       if (this.deviceOrientationControls !== null) {
         this.deviceOrientationControls.update()
       }
+
+      this.stereoEffect.render(this.scene, this.camera)
     },
 
     setStereoEffect() {
@@ -112,7 +115,7 @@ export default {
       container.addEventListener('click', () => {
         // require HTTPS
         DeviceOrientationEvent.requestPermission()
-          .then(function(response) {
+          .then((response) => {
             if (response === 'granted') {
               window.addEventListener(
                 'deviceorientation',
@@ -143,22 +146,24 @@ export default {
       )
     },
     setOrientationControls(e) {
+      if (this.isDeviceOrientationControl) {
+        return false
+      }
+      this.isDeviceOrientationControl = true
+
       if (!e.alpha) {
         return
       }
-
-      // const htmlelm = this.$refs.elementContainer
       this.deviceOrientationControls = new DeviceOrientationControls(
         this.camera
       )
-      this.deviceOrientationControls.connect()
+      // this.deviceOrientationControls.connect()
 
-      // call at once
-      window.removeEventListener(
-        'deviceorientation',
-        this.setOrientationControls,
-        true
-      )
+      // window.removeEventListener(
+      //   'deviceorientation',
+      //   this.setOrientationControls,
+      //   true
+      // )
     },
   },
 }
