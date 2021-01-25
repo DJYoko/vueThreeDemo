@@ -82,3 +82,28 @@ body {
 .p-infoModal-listItemDescription {
     padding-bottom: 12px;
 }
+
+
+.p-backLink {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: block;
+    border: 1px solid #f2f2f2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f2f2f2;
+    padding: 2px 12px;
+    transition: all ease-out 0.2s;
+
+    &:hover {
+        text-decoration: none;
+        background-color: #f2f2f2;
+        color: #222;
+    }
+}
+
+.p-modeInfo {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
