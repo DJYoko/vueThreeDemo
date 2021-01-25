@@ -14,3 +14,45 @@ body {
     right: 12px;
     bottom: 12px;
 }
+
+.p-topPage {
+    text-align: center;
+}
+
+.p-topPage-Link {
+    position: absolute;
+    width: 36%;
+    padding: 20px;
+    border: 1px solid #f2f2f2;
+    color: #f2f2f2;
+    transition: all ease-out 0.2s;
+
+    &:hover {
+        background-color: #f2f2f2;
+        color: #222;
+    }
+}
+
+.p-topPage-LinkDesktop {
+    bottom: 55%;
+    left: 32%;
+
+    @media screen and (min-width: 768px) {
+        bottom: 50%;
+        top: auto;
+        right: 55%;
+        left: auto;
+    }
+}
+
+.p-topPage-LinkMobile {
+    top: 55%;
+    left: 32%;
+
+    @media screen and (min-width: 768px) {
+        bottom: 50%;
+        top: auto;
+        left: 55%;
+
+    }
+}
