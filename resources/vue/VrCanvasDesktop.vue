@@ -1,10 +1,12 @@
 <template>
-  <div class="l-cover" ref="elementContainer"></div>
+  <div class="l-cover" ref="elementContainer">
+    <a class="p-backLink" href="../">back</a>
+    <div class="p-modeInfo">Desktop Mode</div>
+  </div>
 </template>
 
 <script>
 import * as THREE from 'three'
-const StereoEffect = require('three-stereo-effect')(THREE)
 const DeviceOrientationControls = require('three-device-orientation')
 const OrbitControls = require('three-orbit-controls')(THREE)
 
@@ -12,7 +14,6 @@ export default {
   name: 'VrCanvas',
   data() {
     const renderer = new THREE.WebGLRenderer()
-    const stereoEffect = null
     const camera = null
     const deviceOrientationControls = null
     const orbitControls = null
@@ -20,7 +21,6 @@ export default {
     const light = new THREE.PointLight(0xffffff)
 
     return {
-      stereoEffect,
       deviceOrientationControls,
       orbitControls,
       camera,
@@ -72,7 +72,6 @@ export default {
 
     // this.addCube()
     this.snowing()
-    this.setStereoEffect()
     this.addImage()
 
     // start motion
@@ -81,7 +80,7 @@ export default {
   methods: {
     _tick() {
       requestAnimationFrame(this._tick)
-      this.stereoEffect.render(this.scene, this.camera)
+      this.renderer.render(this.scene, this.camera)
 
       // Mobile
       if (this.deviceOrientationControls) {
@@ -92,12 +91,6 @@ export default {
       if (this.orbitControls) {
         this.orbitControls.update()
       }
-    },
-
-    setStereoEffect() {
-      this.stereoEffect = new StereoEffect(this.renderer)
-      this.stereoEffect.eyeSeparation = 1
-      this.stereoEffect.setSize(window.innerWidth, window.innerHeight)
     },
     setPointOfView() {
       if (!this.isMobile) {
@@ -140,7 +133,7 @@ export default {
     },
     addImage() {
       const texture = new THREE.TextureLoader().load(
-        './img/6860371067_fe759ef565_h.jpg',
+        '../img/6860371067_fe759ef565_h.jpg',
         (tex) => {
           const geometry = new THREE.SphereGeometry(5, 24, 18)
           geometry.scale(-1, 1, 1)
