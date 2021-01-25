@@ -1,5 +1,12 @@
 body {
     background-color: #222;
+    word-break: break-all;
+    font-family: "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
 }
 
 .l-cover {
@@ -13,4 +20,94 @@ body {
     position: absolute;
     right: 12px;
     bottom: 12px;
+    cursor: pointer;
+}
+
+.p-topPage {
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.p-topPage-title {
+    padding-top: 40px;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.p-topPage-Link {
+    position: absolute;
+    width: 36%;
+    padding: 20px;
+    border: 1px solid #f2f2f2;
+    color: #f2f2f2;
+    text-decoration: none;
+    transition: all ease-out 0.2s;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        text-decoration: none;
+        background-color: #f2f2f2;
+        color: #222;
+    }
+}
+
+.p-topPage-LinkDesktop {
+    bottom: 55%;
+    left: 32%;
+
+    @media screen and (min-width: 768px) {
+        bottom: 50%;
+        top: auto;
+        right: 55%;
+        left: auto;
+    }
+}
+
+.p-topPage-LinkMobile {
+    top: 55%;
+    left: 32%;
+
+    @media screen and (min-width: 768px) {
+        bottom: 50%;
+        top: auto;
+        left: 55%;
+
+    }
+}
+
+.p-infoModal-list {
+    padding-top: 12px;
+}
+
+.p-infoModal-listItemTitle {}
+
+.p-infoModal-listItemDescription {
+    padding-bottom: 12px;
+}
+
+
+.p-backLink {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: block;
+    border: 1px solid #f2f2f2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #f2f2f2;
+    padding: 2px 12px;
+    transition: all ease-out 0.2s;
+
+    &:hover {
+        text-decoration: none;
+        background-color: #f2f2f2;
+        color: #222;
+    }
+}
+
+.p-modeInfo {
+    position: absolute;
+    top: 12px;
+    right: 12px;
 }
