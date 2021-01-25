@@ -8,7 +8,6 @@ import backgroundSphere from '../mixins/backgroundSphere'
 import * as THREE from 'three'
 import DeviceOrientationControls from 'three-device-orientation'
 const StereoEffect = require('three-stereo-effect')(THREE)
-const DeviceOrientationControls = require('three-device-orientation')
 
 export default {
   name: 'VrCanvas',
