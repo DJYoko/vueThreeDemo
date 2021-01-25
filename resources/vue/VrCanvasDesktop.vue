@@ -7,7 +7,7 @@
 
 <script>
 import * as THREE from 'three'
-const DeviceOrientationControls = require('three-device-orientation')
+
 const OrbitControls = require('three-orbit-controls')(THREE)
 
 export default {
@@ -15,13 +15,11 @@ export default {
   data() {
     const renderer = new THREE.WebGLRenderer()
     const camera = null
-    const deviceOrientationControls = null
     const orbitControls = null
     const scene = new THREE.Scene()
     const light = new THREE.PointLight(0xffffff)
 
     return {
-      deviceOrientationControls,
       orbitControls,
       camera,
       scene,
@@ -62,8 +60,7 @@ export default {
       1100
     )
 
-    // sync Device control and angle
-    this.setPointOfView()
+    this.setOrbitControls()
 
     this.camera.position.z = 4
 
@@ -81,55 +78,7 @@ export default {
     _tick() {
       requestAnimationFrame(this._tick)
       this.renderer.render(this.scene, this.camera)
-
-      // Mobile
-      if (this.deviceOrientationControls) {
-        this.deviceOrientationControls.update()
-      }
-
-      // PC
-      if (this.orbitControls) {
-        this.orbitControls.update()
-      }
-    },
-    setPointOfView() {
-      if (!this.isMobile) {
-        // PC
-        this.setOrbitControls()
-        return false
-      }
-
-      // non SSL env
-      if (typeof DeviceOrientationEvent === 'undefined') {
-        return false
-      }
-
-      // Android & iOS 12 or less
-      if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
-        window.addEventListener(
-          'deviceorientation',
-          this.setOrientationControls
-        )
-        return true
-      }
-
-      // iOS 13 or more
-      const container = this.$refs.elementContainer
-      container.addEventListener('click', () => {
-        // require HTTPS
-        DeviceOrientationEvent.requestPermission()
-          .then(function(response) {
-            if (response === 'granted') {
-              window.addEventListener(
-                'deviceorientation',
-                this.setOrientationControls
-              )
-            }
-          })
-          .catch(function(e) {
-            console.log(e)
-          })
-      })
+      this.orbitControls.update()
     },
     addImage() {
       const texture = new THREE.TextureLoader().load(
@@ -156,24 +105,6 @@ export default {
       this.orbitControls.enableZoom = false
       this.orbitControls.maxPolarAngle = 2.6
       this.orbitControls.minPolarAngle = 0.5
-    },
-    setOrientationControls(e) {
-      if (!e.alpha) {
-        return
-      }
-
-      // const htmlelm = this.$refs.elementContainer
-      this.deviceOrientationControls = new DeviceOrientationControls(
-        this.camera
-      )
-      this.deviceOrientationControls.connect()
-
-      // call at once
-      window.removeEventListener(
-        'deviceorientation',
-        this.setOrientationControls,
-        true
-      )
     },
     snowing() {
       setInterval(() => {
