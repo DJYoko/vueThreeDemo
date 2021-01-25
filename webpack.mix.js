@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'docs/js')
+    .js('resources/js/pageDesktop.js', 'docs/js')
     .sass('resources/css/app.scss', 'docs/css', [
         //
     ]);
