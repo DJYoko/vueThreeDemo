@@ -1,5 +1,6 @@
 body {
     background-color: #222;
+    word-break: break-all;
 }
 
 .l-cover {
@@ -18,6 +19,11 @@ body {
 
 .p-topPage {
     text-align: center;
+}
+
+.p-topPage-title {
+    padding-top: 40px;
+    font-size: 2rem;
 }
 
 .p-topPage-Link {
