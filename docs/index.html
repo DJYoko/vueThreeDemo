@@ -37,7 +37,7 @@
   </head>
   <body>
     <div
-      class="l-cover p-topPage"
+      class="u-cover p-topPage"
       style="background-image: url(./img/6860371067_fe759ef565_h.jpg);"
     >
       <h1 class="p-topPage-title">VUE Three Demo</h1>
@@ -48,17 +48,22 @@
       <div
         class="p-repositoryInformation-switch"
         data-toggle="modal"
-        data-target="#infoModal"
+        data-target="#informationModal"
       >
         info
       </div>
     </div>
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="infoModal">
+    <div
+      class="modal fade p-informationModal"
+      tabindex="-1"
+      role="dialog"
+      id="informationModal"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">information</h5>
+            <h5 class="modal-title p-informationModal__title">information</h5>
             <button
               type="button"
               class="close"
@@ -69,21 +74,21 @@
             </button>
           </div>
           <div class="modal-body">
-            <dl class="p-infoModal-list">
-              <dt class="p-infoModal-listItemTitle">author</dt>
-              <dd class="p-infoModal-listItemDescription">
+            <dl class="p-informationModal-list">
+              <dt class="p-informationModal-listItemTerm">author</dt>
+              <dd class="p-informationModal-listItemDescription">
                 <a target="_blank" href="https://github.com/djyoko"
                   >dj_yoko (https://github.com/djyoko)
                 </a>
               </dd>
-              <dt class="p-infoModal-listItemTitle">repository</dt>
-              <dd class="p-infoModal-listItemDescription">
+              <dt class="p-informationModal-listItemTerm">repository</dt>
+              <dd class="p-informationModal-listItemDescription">
                 <a target="_blank" href="https://github.com/DJYoko/vueThreeDemo"
                   >https://github.com/DJYoko/vueThreeDemo</a
                 >
               </dd>
-              <dt class="p-infoModal-listItemTitle">background photo</dt>
-              <dd class="p-infoModal-listItemDescription">
+              <dt class="p-informationModal-listItemTerm">background photo</dt>
+              <dd class="p-informationModal-listItemDescription">
                 <a
                   target="_blank"
                   href="https://www.flickr.com/photos/onohiroki/6860371067/"

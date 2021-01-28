@@ -1,5 +1,13 @@
+$colorWhite: #e9e9e9;
+$colorBlack: #262626;
+$colorWhiteAlpha: rgba(255, 255, 255, 0.9);
+$colorBlackAlpha: rgba(0, 0, 0, 0.5);
+
+$animDuration: all ease-out 0.3s;
+
 body {
-    background-color: #222;
+    color: $colorWhite;
+    background-color: $colorBlack;
     word-break: break-all;
     font-family: "Helvetica Neue",
         Arial,
@@ -9,8 +17,7 @@ body {
         sans-serif;
 }
 
-.l-cover {
-    color: #e5e5e5;
+.u-cover {
     width: 100%;
     height: 100%;
     position: relative;
@@ -40,16 +47,16 @@ body {
     position: absolute;
     width: 36%;
     padding: 20px;
-    border: 1px solid #f2f2f2;
-    color: #f2f2f2;
+    border: 1px solid $colorWhite;
+    color: $colorWhite;
     text-decoration: none;
-    transition: all ease-out 0.2s;
-    background-color: rgba(0, 0, 0, 0.5);
+    transition: $animDuration;
+    background-color: $colorBlackAlpha;
 
     &:hover {
         text-decoration: none;
-        background-color: #f2f2f2;
-        color: #222;
+        background-color: $colorWhiteAlpha;
+        color: $colorBlack;
     }
 }
 
@@ -58,10 +65,10 @@ body {
     left: 32%;
 
     @media screen and (min-width: 768px) {
-        bottom: 50%;
         top: auto;
-        right: 55%;
+        bottom: calc(50% - 32px);
         left: auto;
+        right: 55%;
     }
 }
 
@@ -70,43 +77,49 @@ body {
     left: 32%;
 
     @media screen and (min-width: 768px) {
-        bottom: 50%;
         top: auto;
+        bottom: calc(50% - 32px);
         left: 55%;
-
+        right: auto;
     }
 }
 
-.p-infoModal-list {
+.p-informationModal__title {
+    color: $colorBlack;
+}
+
+.p-informationModal-list {
     padding-top: 12px;
 }
 
-.p-infoModal-listItemTitle {}
-
-.p-infoModal-listItemDescription {
-    padding-bottom: 12px;
+.p-informationModal-listItemTerm {
+    color: $colorBlack;
 }
 
+.p-informationModal-listItemDescription {
+    padding-bottom: 12px;
+}
 
 .p-backLink {
     position: absolute;
     top: 12px;
     left: 12px;
     display: block;
-    border: 1px solid #f2f2f2;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #f2f2f2;
+    border: 1px solid $colorWhiteAlpha;
+    background-color: $colorBlackAlpha;
+    color: $colorWhiteAlpha;
     padding: 2px 12px;
-    transition: all ease-out 0.2s;
+    transition: $animDuration;
 
     &:hover {
         text-decoration: none;
-        background-color: #f2f2f2;
-        color: #222;
+        background-color: $colorWhiteAlpha;
+        color: $colorBlack;
     }
 }
 
 .p-modeInfo {
+    color: $colorWhite;
     position: absolute;
     top: 12px;
     right: 12px;
