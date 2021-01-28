@@ -40,8 +40,8 @@ body {
     position: absolute;
     width: 36%;
     padding: 20px;
-    border: 1px solid #f2f2f2;
-    color: #f2f2f2;
+    border: 1px solid #e5e5e5;
+    color: #e5e5e5;
     text-decoration: none;
     transition: all ease-out 0.2s;
     background-color: rgba(0, 0, 0, 0.5);
@@ -98,20 +98,21 @@ body {
     top: 12px;
     left: 12px;
     display: block;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #e5e5e5;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #f2f2f2;
+    color: #e5e5e5;
     padding: 2px 12px;
     transition: all ease-out 0.2s;
 
     &:hover {
         text-decoration: none;
-        background-color: #f2f2f2;
+        background-color: #e5e5e5;
         color: #222;
     }
 }
 
 .p-modeInfo {
+    color: #e5e5e5;
     position: absolute;
     top: 12px;
     right: 12px;
