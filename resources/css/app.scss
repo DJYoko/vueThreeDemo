@@ -77,11 +77,17 @@ body {
     }
 }
 
+.p-informationModal__title {
+    color: #222;
+}
+
 .p-informationModal-list {
     padding-top: 12px;
 }
 
-.p-informationModal-listItemTitle {}
+.p-informationModal-listItemTerm {
+    color: #222;
+}
 
 .p-informationModal-listItemDescription {
     padding-bottom: 12px;
