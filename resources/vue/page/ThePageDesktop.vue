@@ -1,5 +1,5 @@
 <template>
-  <div class="l-cover">
+  <div class="u-cover">
     <VrCanvasDesktop />
     <a class="p-backLink" href="../">back</a>
     <div class="p-modeInfo">Desktop Mode</div>

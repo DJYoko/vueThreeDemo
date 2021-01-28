@@ -1,5 +1,5 @@
 <template>
-  <div class="l-cover" ref="elementContainer"></div>
+  <div class="u-cover" ref="elementContainer"></div>
 </template>
 
 <script>
