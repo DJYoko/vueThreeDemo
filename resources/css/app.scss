@@ -48,7 +48,7 @@ body {
 
     &:hover {
         text-decoration: none;
-        background-color: #f2f2f2;
+        background-color: rgba(255, 255, 255, 0.8);
         color: #222;
     }
 }
@@ -58,10 +58,10 @@ body {
     left: 32%;
 
     @media screen and (min-width: 768px) {
-        bottom: 50%;
         top: auto;
-        right: 55%;
+        bottom: calc(50% - 32px);
         left: auto;
+        right: 55%;
     }
 }
 
@@ -70,10 +70,10 @@ body {
     left: 32%;
 
     @media screen and (min-width: 768px) {
-        bottom: 50%;
         top: auto;
+        bottom: calc(50% - 32px);
         left: 55%;
-
+        right: auto;
     }
 }
 
@@ -92,7 +92,6 @@ body {
 .p-informationModal-listItemDescription {
     padding-bottom: 12px;
 }
-
 
 .p-backLink {
     position: absolute;
