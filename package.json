@@ -19,7 +19,7 @@
     "resolve-url-loader": "^3.1.0",
     "sass": "^1.32.2",
     "sass-loader": "^10.1.0",
-    "three": "^0.124.0",
+    "three": "^0.125.0",
     "three-device-orientation": "^1.0.3",
     "three-orbit-controls": "^82.1.0",
     "three-stereo-effect": "^1.0.14",
