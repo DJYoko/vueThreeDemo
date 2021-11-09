@@ -23,9 +23,9 @@
     "three-device-orientation": "^1.0.3",
     "three-orbit-controls": "^82.1.0",
     "three-stereo-effect": "^1.0.14",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.14"
   },
   "dependencies": {
-    "vue": "^2.6.12"
+    "vue": "^2.6.14"
   }
 }
