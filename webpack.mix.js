@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,8 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/pageMobile.js', 'docs/js')
-    .js('resources/js/pageDesktop.js', 'docs/js')
-    .sass('resources/css/app.scss', 'docs/css', [
-        //
-    ]);
+mix
+  .js('resources/js/pageMobile.js', 'docs/js')
+  .vue()
+  .js('resources/js/pageDesktop.js', 'docs/js')
+  .vue()
+  .sass('resources/css/app.scss', 'docs/css', [
+    //
+  ])
